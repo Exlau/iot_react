@@ -33,7 +33,10 @@ const EntryPage = (props) => {
         Cookies.set("token", "ok", {expires: 7});
         window.location.href = `${localUrl}index/home`;
       })
-      .catch((err) => {});
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log("err!", err);
+      });
   };
 
   const currentView = () => {

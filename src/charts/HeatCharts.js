@@ -24,8 +24,8 @@ const HeatCharts = ({size, data}) => {
           startAngle: 200,
           endAngle: -20,
           min: 0,
-          max: 60,
-          splitNumber: 12,
+          max: 100,
+          splitNumber: 10,
           itemStyle: {
             color: "#FFAB91",
           },

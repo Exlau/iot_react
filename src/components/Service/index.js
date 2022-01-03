@@ -19,8 +19,6 @@ export default function Service(props) {
   const processedData = useMemo(
     () =>
       processTableData(tableData, (cpn) => {
-        // eslint-disable-next-line no-console
-        console.log("??");
         setModalCpn(cpn);
         setVisu(true);
       }),
@@ -36,11 +34,9 @@ export default function Service(props) {
     }
   }, []);
 
-  // eslint-disable-next-line no-console
-  console.log("render!", visu);
   return (
     <div className="service-root">
-      <ServiceModal visible={visu} visibleCb={visibleCb} cpn={modalCpn} />
+      <ServiceModal visible={visu} visibleCb={visibleCb} Cpn={modalCpn} />
       <Table columns={columns()} dataSource={processedData} />
     </div>
   );

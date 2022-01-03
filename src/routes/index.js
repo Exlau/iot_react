@@ -1,5 +1,7 @@
 import Home from "../components/Home";
 import Service from "../components/Service";
+import Equipment from "../components/Equipment";
+
 const routes = [
   {
     title: "仪表盘",
@@ -22,15 +24,11 @@ const routes = [
     link: "service",
   },
   {
-    title: "设备注册",
-    key: "equipRegist",
-    component: (
-      <div>
-        <input />
-      </div>
-    ),
-    path: "equipregist",
-    link: "equipregist",
+    title: "设备管理",
+    key: "equipManage",
+    component: <Equipment />,
+    path: "equipment",
+    link: "equipment",
   },
 ];
 

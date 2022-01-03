@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Modal} from "antd";
 
-export default function ServiceModal({visible, visibleCb, cpn}) {
+export default function ServiceModal({visible, visibleCb, Cpn}) {
   const [isModalVisible, setIsModalVisible] = useState(visible);
 
   useEffect(() => {
@@ -18,14 +18,16 @@ export default function ServiceModal({visible, visibleCb, cpn}) {
     visibleCb(false);
   };
 
+  const passPropsToFather = (props) => {};
+
   return (
     <Modal
-      title="Basic Modal"
+      title="服务调用"
       visible={isModalVisible}
       onOk={handleOk}
       onCancel={handleCancel}
     >
-      {cpn}
+      {Cpn}
     </Modal>
   );
 }

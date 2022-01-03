@@ -7,7 +7,12 @@ const locStorage = {
     window.localStorage.setItem(key, JSON.stringify(item));
   },
   get: (key) => {
-    return JSON.parse(JSON.parse(window.localStorage.getItem(key)).value);
+    const obj = JSON.parse(window.localStorage.getItem(key));
+    let res = "";
+    if (obj) {
+      res = obj.value;
+    }
+    return res;
   },
   getNewComing: (key) => {
     let newComing;

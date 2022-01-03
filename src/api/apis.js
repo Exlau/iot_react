@@ -4,7 +4,7 @@ import axios from "axios";
 
 export function doLogin({username, password}) {
   const url = "iot/home";
-  return axios.get(
+  return axios.post(
     `${baseUrl}${url}?username=${username}&password=${password}`
   );
 }
