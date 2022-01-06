@@ -31,5 +31,3 @@ export function processTableData(hashMap, cb) {
 
   return tableData;
 }
-
-const processModalData = (data) => {};

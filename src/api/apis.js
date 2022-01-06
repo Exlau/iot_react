@@ -1,4 +1,3 @@
-import req from "./index.js";
 import {baseUrl} from "./config.js";
 import axios from "axios";
 

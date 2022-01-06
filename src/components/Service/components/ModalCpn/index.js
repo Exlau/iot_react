@@ -1,18 +1,5 @@
 import React, {useState} from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-  notification,
-  PageHeader,
-} from "antd";
+import {Form, Input, Button, notification, PageHeader} from "antd";
 
 import {callService} from "../../../../api/services";
 import serviceCb from "../../data/servicePresent";
@@ -31,8 +18,6 @@ export default function ModalForm({row}) {
   const onFormLayoutChange = ({size}) => {
     setComponentSize(size);
   };
-
-  const handleCallService = () => {};
 
   const onFinish = (val) => {
     const method_key = row.key;

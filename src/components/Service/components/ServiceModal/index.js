@@ -18,8 +18,6 @@ export default function ServiceModal({visible, visibleCb, Cpn}) {
     visibleCb(false);
   };
 
-  const passPropsToFather = (props) => {};
-
   return (
     <Modal
       title="服务调用"
