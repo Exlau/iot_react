@@ -1,4 +1,5 @@
 import {notification} from "antd";
+import {localUrl} from "../../../api/config";
 
 const presentMap = {
   get_cpu_temp: {
@@ -12,6 +13,14 @@ const presentMap = {
         description: description,
         onClick: () => {},
       });
+    },
+  },
+  "hashMap[hash][0]": {
+    cb: function (res) {
+      this.presentMethod();
+    },
+    presentMethod: () => {
+      window.location.href = `${localUrl}stream/?id=1&name=dssd`;
     },
   },
 };

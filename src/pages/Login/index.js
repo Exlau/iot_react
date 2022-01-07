@@ -1,13 +1,12 @@
 import React, {useState} from "react";
-// import {useDispatch, useSelector} from "react-redux";
-// import authConsts from "../../auth/authConsts";
 import {localUrl} from "../../api/config";
 import Cookies from "js-cookie";
+import locStorage from "../../utils/localStorage";
+
 import "./index.css";
 import {doLogin} from "../../api/apis";
 
 const EntryPage = (props) => {
-  // const dispatch = useDispatch();
   // const token = useSelector((state) => {
   //   return state.authReducer.token;
   // });
@@ -32,6 +31,7 @@ const EntryPage = (props) => {
       .then((res) => {
         Cookies.set("token", "ok", {expires: 7});
         window.location.href = `${localUrl}index/home`;
+        locStorage.set("username", username);
       })
       .catch((err) => {
         // eslint-disable-next-line no-console

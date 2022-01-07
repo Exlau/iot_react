@@ -5,8 +5,11 @@ import BreadCrumbs from "../../src/public/BreadCrumbs";
 import {UserOutlined} from "@ant-design/icons";
 
 import LogoutBtn from "../public/LogoutBtn";
+import HeartBeat from "../public/HeartBeat";
+import EquipSelect from "../public/EquipSelect";
+
 import routes from "./index";
-import "./RouterApp.css";
+import "./App.css";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
@@ -47,9 +50,13 @@ const App = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{padding: 0}}>
-          <LogoutBtn />
+          <span className="header-content">
+            <LogoutBtn />
+            <HeartBeat />
+            <EquipSelect />
+          </span>
         </Header>
-        <Content style={{margin: "0 16px"}}>
+        <Content style={{margin: "0 16px", height: "80vh", overflowY: "auto"}}>
           <BreadCrumbs style={{margin: "16px 0"}} />
           {/* <Breadcrumb style={{margin: "16px 0"}}>
             <Breadcrumb.Item>User</Breadcrumb.Item>

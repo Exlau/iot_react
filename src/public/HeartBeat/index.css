@@ -1,0 +1,12 @@
+.heart-beat-time {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1890ff;
+}
+
+.heart-beat-status {
+  margin-left: 20px;
+  color: #3f6600;
+  font-weight: 600;
+  font-size: 16px;
+}

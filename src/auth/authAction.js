@@ -5,6 +5,12 @@ const setToken = (payload) => ({
   payload,
 });
 
+const setUsername = (payload) => ({
+  type: actionTypes.SET_USERNAME,
+  payload,
+});
+
 module.exports = {
   setToken,
+  setUsername,
 };

@@ -20,8 +20,8 @@ export default function ModalForm({row}) {
   };
 
   const onFinish = (val) => {
-    const method_key = row.key;
-    const method_name = row["service-name"];
+    const method_key = row.key || null;
+    const method_name = row["service-name"] || null;
     callService(method_key)
       .then((res) => {
         serviceCb(method_name, res);
@@ -33,7 +33,10 @@ export default function ModalForm({row}) {
 
   return (
     <div>
-      <PageHeader className="modal-page-header" title={row["service-name"]} />
+      <PageHeader
+        className="modal-page-header"
+        title={row["service-name"] || "unknown service"}
+      />
       <Form
         labelCol={{
           span: 4,
@@ -49,13 +52,15 @@ export default function ModalForm({row}) {
         onFinish={onFinish}
         size={componentSize}
       >
-        {row["params-list"].map((param) => {
-          return (
-            <Form.Item label={param} key={param} name={param}>
-              <Input />
-            </Form.Item>
-          );
-        })}
+        {row["params-list"]
+          ? row["params-list"].map((param) => {
+              return (
+                <Form.Item label={param} key={param} name={param}>
+                  <Input />
+                </Form.Item>
+              );
+            })
+          : null}
 
         <Form.Item>
           <Button type="primary" htmlType="submit">

@@ -25,7 +25,17 @@ export function processTableData(hashMap, cb) {
     state: SERVICE_STATE.STABLE,
     action: {
       text: "Call",
-      callBack: () => cb(<div>cpn!!22@</div>),
+      callBack: () =>
+        cb(
+          <ModalForm
+            row={{
+              key: "hash",
+              "service-name": "hashMap[hash][0]",
+              "params-list": ["nn", "kk"],
+              state: SERVICE_STATE.STABLE,
+            }}
+          />
+        ),
     },
   });
 

@@ -14,6 +14,9 @@ const locStorage = {
     }
     return res;
   },
+  rm: (key) => {
+    window.localStorage.removeItem(key);
+  },
   getNewComing: (key) => {
     let newComing;
     try {
