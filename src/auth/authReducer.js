@@ -8,9 +8,9 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case actionTypes.SET_TOKEN:
-      return {...initState, token: action.payload};
+      return {...state, token: action.payload};
     case actionTypes.SET_USERNAME:
-      return {...initState, username: action.payload};
+      return {...state, username: action.payload};
     default:
       return {...initState};
   }

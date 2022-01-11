@@ -1,0 +1,10 @@
+.device-select {
+  display: flex;
+  align-items: center;
+}
+
+.current-device-text {
+  margin-right: 10px;
+  color: #10239e;
+  font-weight: 600;
+}

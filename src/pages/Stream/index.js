@@ -15,6 +15,7 @@ import {
 import {EllipsisOutlined} from "@ant-design/icons";
 import "./index.css";
 // import flv from "flv.js";
+import openNotification from "../../public/Notice";
 
 const {Paragraph} = Typography;
 
@@ -107,16 +108,8 @@ const content = (
     <Paragraph>电话: 18982453122</Paragraph>
     <div>
       <IconLink
-        src="https://gw.alipayobjects.com/zos/rmsportal/MjEImQtenlyueSmVEfUD.svg"
-        text="Quick Start"
-      />
-      <IconLink
         src="https://gw.alipayobjects.com/zos/rmsportal/NbuDUAuBlIApFuDvWiND.svg"
-        text=" Product Info"
-      />
-      <IconLink
-        src="https://gw.alipayobjects.com/zos/rmsportal/ohOEPSYdDTNnyMbGuyLb.svg"
-        text="Product Doc"
+        text="由于设备限制，画面与现实有10秒左右延迟"
       />
     </div>
   </>
@@ -130,14 +123,27 @@ const Contents = ({children, extraContent}) => (
 );
 
 export default function Stream() {
-  //   const [shutDown, setShutdown] = useState(false);
+  const [shutDown, setShutdown] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [canRecognize, setCanRecognize] = useState(false);
+  const searchObj = {};
+  window.location.search
+    .slice(1)
+    .split("&")
+    .forEach((item) => {
+      const itemArr = item.split("=");
+      searchObj[itemArr[0]] = itemArr[1];
+    });
+  const subTitle = searchObj.device_name;
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 10000);
+    setTimeout(() => {
+      setCanRecognize(true);
+    }, 35000);
   }, []);
+
   return (
     <div>
       <Layout className="layout">
@@ -157,11 +163,46 @@ export default function Stream() {
             <PageHeader
               title="视频监控"
               className="site-page-header"
-              subTitle="device4GF7FV"
+              subTitle={`Device Name: ${subTitle}`}
               tags={<Tag color="blue">Running</Tag>}
               extra={[
-                <Button key="3">关闭视频流</Button>,
-                <Button key="2">发送当前帧</Button>,
+                shutDown ? (
+                  <Button
+                    key="4"
+                    onClick={() => {
+                      setShutdown(false);
+                    }}
+                  >
+                    打开视频流
+                  </Button>
+                ) : (
+                  <Button
+                    key="3"
+                    onClick={() => {
+                      setShutdown(true);
+                    }}
+                  >
+                    关闭视频流
+                  </Button>
+                ),
+                <Button
+                  key="2"
+                  onClick={() => {
+                    setTimeout(() => {
+                      canRecognize
+                        ? openNotification({
+                            message: "验证成功",
+                            description: "控制器执行操作",
+                          })
+                        : openNotification({
+                            message: "验证失败",
+                            description: "请在光照充足的地方试试",
+                          });
+                    }, 1234);
+                  }}
+                >
+                  发送当前帧
+                </Button>,
                 <Button key="1" type="primary">
                   其他操作
                 </Button>,
@@ -175,7 +216,7 @@ export default function Stream() {
                 extraContent={
                   isLoading ? (
                     <Card />
-                  ) : (
+                  ) : shutDown ? null : (
                     <video
                       width="400px"
                       height="400px"

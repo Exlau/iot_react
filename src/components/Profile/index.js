@@ -1,22 +1,27 @@
 import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import {Descriptions, Badge} from "antd";
 import locStorage from "../../utils/localStorage";
+import {getAppkey} from "../../api/equipments";
+
 const errMsg = "Oops! Something went wrong please contact us";
 
 export default function Profile() {
   const [appkey, setAppkey] = useState("NULL");
   const username = locStorage.get("username");
+  const deviceList = useSelector((state) => {
+    return state.equipmentReducer.equipmentList;
+  });
   useEffect(() => {
     // do get appkey from
     // TODO
-    const pro = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("success!");
-      }, 500);
-    });
-    pro.then((res) => {
-      setAppkey(res);
-    });
+    getAppkey()
+      .then((res) => {
+        setAppkey(res.data.appkey);
+      })
+      .catch((err) => {
+        setAppkey(errMsg);
+      });
   }, []);
   const nowTime = new Date();
   const offset = nowTime.getTimezoneOffset() / 60;
@@ -38,8 +43,19 @@ export default function Profile() {
           <Badge status="processing" text="Availible" />
         </Descriptions.Item>
         <Descriptions.Item label="邮箱">285874446@qq.com</Descriptions.Item>
-        <Descriptions.Item label="其他信息">
-          Data disk type: MongoDB
+        <Descriptions.Item label="拥有的设备">
+          {deviceList.map((item) => {
+            return (
+              <div
+                className="device-item"
+                style={{color: "#002766"}}
+                key={item.device_authority}
+              >
+                {item.device_name}
+              </div>
+            );
+          })}
+          {/* Data disk type: MongoDB
           <br />
           Database version: 3.4
           <br />
@@ -49,7 +65,7 @@ export default function Profile() {
           <br />
           Replication factor: 3
           <br />
-          Region: East China 1<br />
+          Region: East China 1<br /> */}
         </Descriptions.Item>
       </Descriptions>
     </div>

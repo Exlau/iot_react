@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link, Routes, Route} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import equipmentConsts from "../components/Equipment/data/equipmentConsts";
 import {Layout, Menu} from "antd";
 import BreadCrumbs from "../../src/public/BreadCrumbs";
 import {UserOutlined} from "@ant-design/icons";
@@ -7,14 +9,30 @@ import {UserOutlined} from "@ant-design/icons";
 import LogoutBtn from "../public/LogoutBtn";
 import HeartBeat from "../public/HeartBeat";
 import EquipSelect from "../public/EquipSelect";
+import DeviceLogoutBtn from "../public/DeviceLogoutBtn";
 
 import routes from "./index";
+
+import {getDeviceList} from "../api/equipments";
 import "./App.css";
 
 const {Header, Content, Footer, Sider} = Layout;
 const {SubMenu} = Menu;
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getDeviceList().then((res) => {
+      const list = [];
+      Object.keys(res.data.device_list).forEach((item) => {
+        list.push(res.data.device_list[item]);
+      });
+      dispatch({
+        type: equipmentConsts.SET_EQUIPLIST,
+        payload: list,
+      });
+    });
+  });
   const collapsed = false;
   return (
     <Layout style={{minHeight: "100vh"}}>
@@ -52,6 +70,7 @@ const App = () => {
         <Header className="site-layout-background" style={{padding: 0}}>
           <span className="header-content">
             <LogoutBtn />
+            <DeviceLogoutBtn/>
             <HeartBeat />
             <EquipSelect />
           </span>

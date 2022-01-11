@@ -1,26 +1,26 @@
 import React, {useState} from "react";
 import {Form, Input, Tooltip, Button, Space} from "antd";
+import {getAppkey} from "../../api/equipments";
+import {regesterDevice} from "../../api/equipments";
 
 export default function Equipment() {
-  const [appkeyValue, setAppkeyValue] = useState("sadsa????");
+  const [appkeyValue, setAppkeyValue] = useState("");
   const onFinish = (values) => {
-    // eslint-disable-next-line
-    console.log("Received values of form: ", values);
+    values.appkey = appkeyValue;
+    regesterDevice(values).then((res) => {
+      // eslint-disable-next-line
+      console.log(res.data);
+    });
   };
 
   const onGetAppkey = () => {
-    const simulate = () => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve("set success");
-        }, 1000);
+    getAppkey()
+      .then((res) => {
+        setAppkeyValue(res.data.appkey);
+      })
+      .catch((err) => {
+        alert("Error Occure when get Appkey");
       });
-    };
-    simulate().then((res) => {
-      // eslint-disable-next-line
-      console.log(res);
-      setAppkeyValue(res);
-    });
   };
 
   return (

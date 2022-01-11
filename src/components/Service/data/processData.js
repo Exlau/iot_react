@@ -20,8 +20,8 @@ export function processTableData(hashMap, cb) {
   });
   tableData.push({
     key: "hash",
-    "service-name": "hashMap[hash][0]",
-    "params-list": ["nn", "kk"],
+    "service-name": "monitor",
+    "params-list": ["no need params"],
     state: SERVICE_STATE.STABLE,
     action: {
       text: "Call",
@@ -30,8 +30,8 @@ export function processTableData(hashMap, cb) {
           <ModalForm
             row={{
               key: "hash",
-              "service-name": "hashMap[hash][0]",
-              "params-list": ["nn", "kk"],
+              "service-name": "monitor",
+              "params-list": ["no need params"],
               state: SERVICE_STATE.STABLE,
             }}
           />

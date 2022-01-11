@@ -72,7 +72,7 @@ const EntryPage = (props) => {
       case "logIn":
         return (
           <div className="login-root">
-            <h2>Welcome Back!</h2>
+            <h2>轻量级云边融合IOT平台</h2>
             <fieldset>
               <legend>Log In</legend>
               <ul>

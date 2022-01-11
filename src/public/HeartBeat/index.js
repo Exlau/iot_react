@@ -12,27 +12,22 @@ const processData = (data) => {
     res.class = "heartbeat";
   }
   if (data.status) {
-    switch (data.status) {
-      case "not-available":
-        res.status = <Tag color="red">Not Available</Tag>;
-        break;
-      default:
-        res.status = <Tag color="#40a9ff">Working</Tag>;
+    const available = data.status === "avaliable";
+    if (available) {
+      // eslint-disable-next-line
+      console.log("available is :", available);
+      res.status = <Tag color="#40a9ff">Working</Tag>;
+    } else {
+      // eslint-disable-next-line
+      console.log("available is :", available);
+      res.status = <Tag color="red">Not Available</Tag>;
     }
   }
-
-  return (
-    <div>
-      <span className="heart-beat-time" style={{color: "#1890ff"}}>
-        最近心跳时间：{res.time}
-      </span>
-      <span className="heart-beat-status">设备状态： {res.status}</span>
-    </div>
-  );
+  return res;
 };
 
 export default function HeartBeat() {
-  const [status, setStatus] = useState();
+  const [stat, setStatus] = useState({});
 
   useEffect(() => {
     heartBeat().then((res) => {
@@ -46,6 +41,8 @@ export default function HeartBeat() {
     const timer = setInterval(() => {
       heartBeat().then((res) => {
         try {
+          // eslint-disable-next-line
+          console.log("do process");
           setStatus(processData(res.data));
         } catch (e) {
           // eslint-disable-next-line
@@ -59,5 +56,14 @@ export default function HeartBeat() {
     };
   }, []);
 
-  return <div className="heartbeat-root">{status}</div>;
+  return (
+    <div className="heartbeat-root">
+      <div>
+        <span className="heart-beat-time" style={{color: "#1890ff"}}>
+          最近心跳时间：{stat.time}
+        </span>
+        <span className="heart-beat-status">设备状态： {stat.status}</span>
+      </div>
+    </div>
+  );
 }

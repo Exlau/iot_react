@@ -9,7 +9,6 @@ export default function Home() {
     const setdata = setInterval(() => {
       serviceList.forEach((service) => {
         service.dataRefresh();
-
         // 触发render
         setFresh((pre) => {
           return !pre;

@@ -1,0 +1,9 @@
+const SET_EQUIP = "SET_EQUIP";
+const SET_AUTHORITY = "SET_AUTHORITY";
+const SET_EQUIPLIST = "SET_EQUIPLIST";
+
+module.exports = {
+  SET_EQUIP,
+  SET_AUTHORITY,
+  SET_EQUIPLIST,
+};

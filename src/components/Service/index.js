@@ -26,12 +26,12 @@ export default function Service(props) {
   );
 
   useEffect(() => {
-    if (locStorage.getNewComing("serviceList") !== false) {
-      getServiceList().then((res) => {
-        locStorage.set("serviceList", res.data.serv_list);
-        setTableData(res.data.serv_list);
-      });
-    }
+    // if (locStorage.getNewComing("serviceList") !== false) {
+    getServiceList().then((res) => {
+      // locStorage.set("serviceList", res.data.serv_list);
+      setTableData(res.data.serv_list);
+    });
+    // }
   }, []);
 
   return (
